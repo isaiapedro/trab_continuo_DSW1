@@ -1,15 +1,7 @@
-package br.ufscar.dc.dsw;
+package br.ufscar.dc.dsw.domain;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class User {
-    private String nomeLogin, nome, senha;
-    private final Date ultimoAcesso;
-
-    public User() {
-        ultimoAcesso = new Date();
-    }
+public class BaseUser {
+    private String nomeLogin, nome, senha, email;
 
     public void setNomeLogin(final String nomeLogin) {
         this.nomeLogin = nomeLogin;
@@ -23,6 +15,14 @@ public class User {
         return nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
     public void setNome(final String nome) {
         this.nome = nome;
     }
@@ -33,10 +33,5 @@ public class User {
 
     public void setSenha(final String senha) {
         this.senha = senha;
-    }
-
-    public String getUltimoAcesso() {
-        final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss:SSS");
-        return sdf.format(ultimoAcesso);
     }
 }
