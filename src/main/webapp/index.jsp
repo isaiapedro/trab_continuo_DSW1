@@ -1,18 +1,22 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login page</title>
-    </head>
-    <body>
-        <form action="login.jsp" method="POST">
-            <fieldset>
-                <legend>Login</legend>
-                Usuário: <input type="text" name="usuario" /><br/>
-                Senha: <input type="password" name="senha" /><br/>
-                <input type="submit" value="Login" />
-            </fieldset>
-        </form>
-    </body>
-</html>
+<%-- Essa paǵina será a página após o login do cliente, adm ou prestador 
+	Esse código não é util
+	O fluxo de login será controlado pelo IndexController e a page inicial do sistema será login.jsp
+	Seguindo exemplo de login do professor.
+--%>
+
+<%@ page import="br.ufscar.dc.dsw.domain.BaseUser" %>
+<%
+String email = request.getParameter("usuario");
+String senha = request.getParameter("senha");
+if(senha.equals(nomeLogin)) {
+    User usuario = new User();
+    usuario.setNome("Steve Jobs");
+    usuario.setNomeLogin(nomeLogin);
+    usuario.setSenha(senha);
+    session.setAttribute("usuarioLogado", usuario);
+%>
+<jsp:forward page="principal.jsp" />
+<% }
+else { %>
+<jsp:forward page="index.jsp" />
+<% } %>

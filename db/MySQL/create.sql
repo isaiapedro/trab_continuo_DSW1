@@ -4,9 +4,31 @@ CREATE DATABASE Login;
 
 USE Login;
 
-CREATE TABLE Usuario(id bigint not null auto_increment, nome varchar(256) not null, email varchar(256) not null, login varchar(20) not null unique, senha varchar(64) not null, papel varchar(10) not null, primary key (id));
-CREATE TABLE Prestador(id bigint not null auto_increment, nome varchar(256) not null, email varchar(256) not null, login varchar(20) not null unique, senha varchar(64) not null, macro varchar(20) not null, micro varchar(40), primary key (id));
+CREATE TABLE Cliente(
+	id bigint not null auto_increment,
+	email varchar(256) not null, 
+	senha varchar(64) not null,
+	nome varchar(256) not null,
+	CPF varchar(20) not null unique, 
+	adm bit not null,
+	telefone varchar(20) not null,
+	sexo varchar(20) not null,
+	nascimento varchar(20) not null,
+	primary key (id)
+);
 
-INSERT INTO Usuario(nome, email, login, senha, papel) VALUES ('Administrador', 'sonaejc@estudante.ufscar.br', 'admin', 'admin', 'ADMIN');
-INSERT INTO Usuario(nome, email, login, senha, papel) VALUES ('Usuario de Teste', 'testuser@unexistent.com', 'consumer', 'consumer', 'USER');
-INSERT INTO Prestador(nome, email, login, senha, macro, micro) VALUES ('Prestador de Teste', 'testworker@unexistent.com', 'worker', 'worker', 'médico', 'pneumologista');
+CREATE TABLE Prestador(
+	id bigint not null auto_increment,
+	email varchar(256) not null, 
+	senha varchar(64) not null,
+	nome varchar(256) not null,
+	CPF varchar(20) not null unique, 
+	area varchar(20) not null, 
+	especialidade varchar(40) not null, 
+	primary key (id)
+);
+
+INSERT INTO Cliente(email, senha, nome, CPF, papel, telefone, sexo, nascimento) VALUES ('rafaelturyminatel@gmail.com', 'admin', 'Rafael', '84896039300', 1, '40028922', 'masculino', '23111998');
+INSERT INTO Cliente(email, senha, nome, CPF, papel, telefone, sexo, nascimento) VALUES ('pedro@gmail.com', 'cliente', 'Pedrinho', '84896039300', 0, '40028922', 'masculino', '23111998');
+
+INSERT INTO Prestador(email, senha, nome, CPF, area, especialidade) VALUES ('medico@gmail.com', 'worker', 'Ricardão', '84896039300', 'médico', 'pneumologista');
