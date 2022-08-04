@@ -28,7 +28,7 @@ CREATE TABLE Prestador(
 	primary key (id)
 );
 
-INSERT INTO Cliente(email, senha, nome, CPF, papel, telefone, sexo, nascimento) VALUES ('rafaelturyminatel@gmail.com', 'admin', 'Rafael', '84896039300', 1, '40028922', 'masculino', '23111998');
-INSERT INTO Cliente(email, senha, nome, CPF, papel, telefone, sexo, nascimento) VALUES ('pedro@gmail.com', 'cliente', 'Pedrinho', '84896039300', 0, '40028922', 'masculino', '23111998');
+INSERT INTO Cliente(email, senha, nome, CPF, adm, telefone, sexo, nascimento) VALUES ('rafaelturyminatel@gmail.com', 'admin', 'Rafael', '84896039300', 1, '40028922', 'masculino', '23111998');
+INSERT INTO Cliente(email, senha, nome, CPF, adm, telefone, sexo, nascimento) VALUES ('pedro@gmail.com', 'cliente', 'Pedrinho', '84896039300', 0, '40028922', 'masculino', '23111998');
 
 INSERT INTO Prestador(email, senha, nome, CPF, area, especialidade) VALUES ('medico@gmail.com', 'worker', 'Ricardão', '84896039300', 'médico', 'pneumologista');

@@ -1,1 +1,4 @@
+br/ufscar/dc/dsw/dao/PrestadorDAO.class
+br/ufscar/dc/dsw/dao/ClienteDAO.class
 br/ufscar/dc/dsw/domain/Prestador.class
+br/ufscar/dc/dsw/controller/IndexController.class

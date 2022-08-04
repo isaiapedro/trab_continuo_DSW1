@@ -2,10 +2,28 @@ package br.ufscar.dc.dsw.domain;
 
 public class BaseUser {
 	
+	private Long id;
 	private String email;
     private String senha;
     private String nome;
     private String CPF;
+    
+	public BaseUser(Long id, String email, String senha, String nome, String cPF) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.nome = nome;
+		CPF = cPF;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
         return email;
@@ -31,7 +49,7 @@ public class BaseUser {
         this.nome = nome;
     }
 
-	private String getCPF() {
+    public String getCPF() {
 		return CPF;
 	}
 

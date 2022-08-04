@@ -1,7 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import br.ufscar.dc.dsw.dao.UsuarioDAO;
-//import br.ufscar.dc.dsw.domain.Usuario;
-//import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.dao.ClienteDAO;
+import br.ufscar.dc.dsw.domain.Cliente;
+
 
 @WebServlet(name = "Index", urlPatterns = { "/index.jsp", "/logout.jsp" })
 public class IndexController extends HttpServlet {
@@ -41,28 +40,23 @@ public class IndexController extends HttpServlet {
 			Tratamento de erros
 			*/
 			
-				UsuarioDAO dao = new UsuarioDAO();
-				Usuario usuario = dao.getbyLogin(login);
-				if (usuario != null) {
-					if (usuario.getSenha().equals(senha)) {
-						request.getSession().setAttribute("usuarioLogado", usuario);
-						if (usuario.getPapel().equals("ADMIN")) {
+				ClienteDAO dao = new ClienteDAO();
+				Cliente cliente = dao.getbyLogin(email);
+				if (cliente != null) {
+					if (cliente.getSenha().equals(senha)) {
+						request.getSession().setAttribute("usuarioLogado", cliente);
+						if (cliente.getAdm()== 1) {
 							response.sendRedirect("admin/");
 						} else {
 							response.sendRedirect("usuario/");
 						}
 						return;
-					} else {
-						erros.add("Senha inválida!");
-					}
-				} else {
-					erros.add("Usuário não encontrado!");
 				}
 			}
 		}
 		request.getSession().invalidate();
 
-		request.setAttribute("mensagens", erros);
+		//request.setAttribute("mensagens", erros);
 
 		String URL = "/login.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(URL);

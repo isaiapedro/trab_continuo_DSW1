@@ -2,31 +2,43 @@ package br.ufscar.dc.dsw.domain;
 
 public class Cliente extends BaseUser {
 	
-	private boolean adm;
+	private int adm;
 	private String telefone;
     private String sexo;
     private String data_nascimento;
 	
-	private boolean isAdm() {
+	
+	public Cliente(Long id, String email, String senha, String nome, String cPF, 
+			int adm, String telefone, String sexo, String data_nascimento) {
+		
+		super(id, email, senha, nome, cPF);
+		this.adm = adm;
+		this.telefone = telefone;
+		this.sexo = sexo;
+		this.data_nascimento = data_nascimento;
+	}
+	public int getAdm() {
 		return adm;
 	}
-	private void setAdm(boolean adm) {
+	private void setAdm(int adm) {
 		this.adm = adm;
 	}
 	
-	private String getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 	private void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	private String getSexo() {
+	
+	public String getSexo() {
 		return sexo;
 	}
 	private void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	private String getData_nascimento() {
+	
+	public String getData_nascimento() {
 		return data_nascimento;
 	}
 	private void setData_nascimento(String data_nascimento) {

@@ -1,16 +1,19 @@
-<%@ page import="br.ufscar.dc.dsw.User" %>
-<%
-String nomeLogin = request.getParameter("usuario");
-String senha = request.getParameter("senha");
-if(senha.equals(nomeLogin)) {
-    User usuario = new User();
-    usuario.setNome("Steve Jobs");
-    usuario.setNomeLogin(nomeLogin);
-    usuario.setSenha(senha);
-    session.setAttribute("usuarioLogado", usuario);
-%>
-<jsp:forward page="principal.jsp" />
-<% }
-else { %>
-<jsp:forward page="index.jsp" />
-<% } %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Login page</title>
+    </head>
+    <body>
+        <form action="index.jsp" method="POST">
+            <fieldset>
+                <legend>Login</legend>
+                Usuário: <input type="text" name="email" /><br/>
+                Senha: <input type="password" name="senha" /><br/>
+                <input type="submit" name="botaoLogin" value="Login" />
+            </fieldset>
+        </form>
+    </body>
+</html>
+

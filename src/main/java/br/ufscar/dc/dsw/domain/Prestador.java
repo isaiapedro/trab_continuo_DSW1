@@ -6,13 +6,21 @@ public class Prestador extends BaseUser{
     private String especialidade;
     //????????? curriculo em PDF;
 	
-	private String getArea() {
+    public Prestador(Long id, String email, String senha, String nome, String cPF, String area, String especialidade) {
+		super(id, email, senha, nome, cPF);
+		this.area = area;
+		this.especialidade = especialidade;
+	}
+    
+	public String getArea() {
 		return area;
 	}
+	
 	private void setArea(String area) {
 		this.area = area;
 	}
-	private String getEspecialidade() {
+	
+	public String getEspecialidade() {
 		return especialidade;
 	}
 	private void setEspecialidade(String especialidade) {
