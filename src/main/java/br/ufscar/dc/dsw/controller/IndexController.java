@@ -25,20 +25,9 @@ public class IndexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Erro erros = new Erro();
 		if (request.getParameter("botaoLogin") != null) {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
-			
-			/*if (email == null || email.isEmpty()) {
-				erros.add("Login não informado!");
-			}
-			if (senha == null || senha.isEmpty()) {
-				erros.add("Senha não informada!");
-			}
-			if (!erros.isExisteErros()) {
-			Tratamento de erros
-			*/
 			
 				ClienteDAO dao = new ClienteDAO();
 				Cliente cliente = dao.getbyLogin(email);
@@ -48,15 +37,13 @@ public class IndexController extends HttpServlet {
 						if (cliente.getAdm()== 1) {
 							response.sendRedirect("admin/");
 						} else {
-							response.sendRedirect("usuario/");
+							response.sendRedirect("cliente/");
 						}
 						return;
 				}
 			}
 		}
 		request.getSession().invalidate();
-
-		//request.setAttribute("mensagens", erros);
 
 		String URL = "/login.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(URL);
