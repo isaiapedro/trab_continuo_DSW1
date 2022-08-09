@@ -4,15 +4,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu do Sistema</title>
+        <title>LifeCare-Admin</title>
+        <link href="../css/admin.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Página do Administrador</h1>
-        <p>Olá ${sessionScope.usuarioLogado.nome}</p>
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
-            </li>
-        </ul>
+    	<header class="cabecalho">
+            <h3 class="cabecalho__titulo">LifeCare</h3>
+            <a class="cabecalho__link" href="#">Gerenciar Clientes</a>
+            <a class="cabecalho__link" href="#">Gerenciar Profissionais</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
+        </header>
+        <div class="corpo">
+        	<section>
+        		<h1>Página do Administrador</h1>
+        		<p>Olá, ${sessionScope.usuarioLogado.nome}! Aqui você encontra todas as ferramentas para administrar seu sistema!</p>
+        	</section>
+        </div>
     </body>
 </html>

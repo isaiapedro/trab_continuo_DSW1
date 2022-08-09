@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
+import br.ufscar.dc.dsw.dao.PrestadorDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Prestador;
 
 
 @WebServlet(name = "Index", urlPatterns = { "/index.jsp", "/logout.jsp" })
@@ -31,6 +33,10 @@ public class IndexController extends HttpServlet {
 			
 				ClienteDAO dao = new ClienteDAO();
 				Cliente cliente = dao.getbyLogin(email);
+				
+				PrestadorDAO daop = new PrestadorDAO();
+				Prestador prestador = daop.getbyLogin(email);
+						
 				if (cliente != null) {
 					if (cliente.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", cliente);
@@ -40,8 +46,14 @@ public class IndexController extends HttpServlet {
 							response.sendRedirect("cliente/");
 						}
 						return;
+					}
+				} else if (prestador != null) {
+					if (prestador.getSenha().equals(senha)) {
+						request.getSession().setAttribute("usuarioLogado", prestador);
+						response.sendRedirect("prestador/");
+					}
+					return;
 				}
-			}
 		}
 		request.getSession().invalidate();
 

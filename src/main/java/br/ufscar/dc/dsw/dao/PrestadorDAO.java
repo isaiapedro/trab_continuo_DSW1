@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Prestador;
 
 public class PrestadorDAO extends GenericDAO {
@@ -128,6 +130,38 @@ public class PrestadorDAO extends GenericDAO {
                 String area = resultSet.getString("area");
                 String especialidade = resultSet.getString("especialidade");
                 
+                prestador = new Prestador(id, email, senha, nome, CPF, area, especialidade);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return prestador;
+    }
+    
+    public Prestador getbyLogin(String Email) {
+    	Prestador prestador = null;
+
+        String sql = "SELECT * from Prestador WHERE email = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, Email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+            	Long id = resultSet.getLong("id");
+            	String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String nome = resultSet.getString("nome");
+                String CPF = resultSet.getString("CPF");
+                String area = resultSet.getString("area");
+                String especialidade = resultSet.getString("especialidade");
+
                 prestador = new Prestador(id, email, senha, nome, CPF, area, especialidade);
             }
 
