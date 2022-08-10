@@ -95,7 +95,7 @@ public class PrestadorController extends HttpServlet {
     private void listaPrestadores(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Prestador> listaPrestadores = dao.getAll();
-        request.setAttribute("listaLivros", listaPrestadores);
+        request.setAttribute("listaPrestadores", listaPrestadores);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listaprofs.jsp");
         dispatcher.forward(request, response);
     }
