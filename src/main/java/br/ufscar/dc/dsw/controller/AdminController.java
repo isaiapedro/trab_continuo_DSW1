@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 
 
@@ -16,6 +17,12 @@ import br.ufscar.dc.dsw.domain.Cliente;
 public class AdminController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    
+    private ClienteDAO dao;
+    
+    public void init() {
+        dao = new ClienteDAO();
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,6 +31,25 @@ public class AdminController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String action = request.getPathInfo();
+        if (action == null) {
+            action = "";
+        }
+
+        try {
+            switch (action) {
+                default:
+                    login(request, response);
+                    break;
+            }
+        } catch (RuntimeException | IOException | ServletException e) {
+            throw new ServletException(e);
+        }
+    	
+    }
+    
+    private void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
     	
     	Cliente usuario = (Cliente) request.getSession().getAttribute("usuarioLogado");
     	
@@ -36,5 +62,6 @@ public class AdminController extends HttpServlet {
     		RequestDispatcher rd = request.getRequestDispatcher("/logout.jsp");
     		rd.forward(request, response);
     	}
+    	
     }
 }

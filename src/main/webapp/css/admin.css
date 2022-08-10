@@ -76,3 +76,9 @@ body {
   color: white;
   border-radius: 1rem;
   border-style: none;
+}
+
+.botao-primario:hover {
+ 	cursor: pointer;
+	background-color: #5242e2;
+}

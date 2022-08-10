@@ -41,16 +41,16 @@ public class IndexController extends HttpServlet {
 					if (cliente.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", cliente);
 						if (cliente.getAdm()== 1) {
-							response.sendRedirect("admin/");
+							response.sendRedirect("admin/login");
 						} else {
-							response.sendRedirect("cliente/");
+							response.sendRedirect("cliente/login");
 						}
 						return;
 					}
 				} else if (prestador != null) {
 					if (prestador.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", prestador);
-						response.sendRedirect("prestador/");
+						response.sendRedirect("prestador/login");
 					}
 					return;
 				}

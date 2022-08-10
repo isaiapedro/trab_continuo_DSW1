@@ -33,22 +33,22 @@ body {
 }
 
 .corpo {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 5%;
+	align-items: center;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 5%;
 }
 
 .conteudo {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  width: 55%;
+  width: 60%;
 }
 
 .conteudo__form {
   height: 100%;
-  width: 50%;
+  width: 100%;
 }
 
 .conteudo__form-label {
@@ -76,3 +76,9 @@ body {
   color: white;
   border-radius: 1rem;
   border-style: none;
+}
+
+.botao-primario:hover {
+ 	cursor: pointer;
+	background-color: #5242e2;
+}

@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>LifeCare-Proffisional</title>
-        <link href="../css/cliente.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/prestador.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     	<header class="cabecalho">

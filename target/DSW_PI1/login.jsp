@@ -1,4 +1,7 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,8 +27,8 @@
                 <div class="cadastro">
                     <h3 class="subtitulo">Não possue uma conta? Crie sua conta agora mesmo</h3>
                     <div class="botoes">
-                        <a href=""><button class="botao-primario">Cliente</button></a>
-                        <a href=""><button class="botao-primario">Profissional</button></a>
+                        <a href="${pageContext.request.contextPath}/cliente/cadastro"><button class="botao-primario">Cliente</button></a>
+                        <a href="${pageContext.request.contextPath}/prestador/cadastro"><button class="botao-primario">Profissional</button></a>
                     </div>
                 </div>
             </section>
