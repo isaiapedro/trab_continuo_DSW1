@@ -12,7 +12,7 @@
     <body>
         <header class="cabecalho">
             <h3 class="cabecalho__titulo">LifeCare</h3>
-            <a class="cabecalho__link" href="#">Nossos Profissionais</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/prestador/listagem">Nossos Profissionais</a>
 
         </header>
         <div class="corpo">

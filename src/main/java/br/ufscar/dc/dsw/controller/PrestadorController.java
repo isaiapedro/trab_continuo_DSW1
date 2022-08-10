@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,6 +57,9 @@ public class PrestadorController extends HttpServlet {
                 case "/gerenciamento":
                     //gerencia(request, response);
                     break;
+                case "/listagem":
+                    listaPrestadores(request, response);
+                    break;
                 default:
                     login(request, response);
                     break;
@@ -86,6 +90,14 @@ public class PrestadorController extends HttpServlet {
         Prestador prestador = new Prestador(null, email, senha, nome, CPF, area, especialidade);
         dao.insert(prestador);
         response.sendRedirect("login");
+    }
+    
+    private void listaPrestadores(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Prestador> listaPrestadores = dao.getAll();
+        request.setAttribute("listaLivros", listaPrestadores);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/listaprofs.jsp");
+        dispatcher.forward(request, response);
     }
     
     private void login(HttpServletRequest request, HttpServletResponse response)
