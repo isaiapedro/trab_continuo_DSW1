@@ -54,8 +54,8 @@ public class PrestadorController extends HttpServlet {
                 case "/atualizacao":
                     //atualize(request, response);
                     break;
-                case "/gerenciamento":
-                    //gerencia(request, response);
+                case "/gerenciar":
+                    gerencia(request, response);
                     break;
                 case "/listagem":
                     listaPrestadores(request, response);
@@ -90,6 +90,15 @@ public class PrestadorController extends HttpServlet {
         Prestador prestador = new Prestador(null, email, senha, nome, CPF, area, especialidade);
         dao.insert(prestador);
         response.sendRedirect("login");
+    }
+    
+    private void gerencia(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    	
+    	List<Prestador> listaPrestadores = dao.getAll();
+        request.setAttribute("listaPrestadores", listaPrestadores);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/prestador/gerenciamento.jsp");
+        dispatcher.forward(request, response);
     }
     
     private void listaPrestadores(HttpServletRequest request, HttpServletResponse response)

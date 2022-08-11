@@ -10,8 +10,8 @@
     <body>
     	<header class="cabecalho">
             <h3 class="cabecalho__titulo">LifeCare</h3>
-            <a class="cabecalho__link" href="#">Gerenciar Clientes</a>
-            <a class="cabecalho__link" href="#">Gerenciar Profissionais</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/cliente/gerenciar">Gerenciar Clientes</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/prestador/gerenciar">Gerenciar Profissionais</a>
             <a class="cabecalho__link" href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
         </header>
         <div class="corpo">

@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Livro;
+import br.ufscar.dc.dsw.domain.Prestador;
 
 
 @WebServlet(urlPatterns = "/cliente/*")
@@ -48,14 +51,14 @@ public class ClienteController extends HttpServlet {
                 case "/remocao":
                     //remove(request, response);
                     break;
-                case "/edicao":
-                    //apresentaFormEdicao(request, response);
+                case "/editar":
+                    formEdicao(request, response);
                     break;
                 case "/atualizacao":
                     //atualize(request, response);
                     break;
-                case "/gerenciamento":
-                    //gerencia(request, response);
+                case "/gerenciar":
+                    gerencia(request, response);
                     break;
                 default:
                     login(request, response);
@@ -70,6 +73,15 @@ public class ClienteController extends HttpServlet {
     private void formCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/cadastro.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void formEdicao(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Cliente cliente = dao.get(id);
+        request.setAttribute("cliente", cliente);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/edicao.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -89,6 +101,15 @@ public class ClienteController extends HttpServlet {
         Cliente cliente = new Cliente(null, email, senha, nome, CPF, adm, telefone, sexo, nascimento);
         dao.insert(cliente);
         response.sendRedirect("login");
+    }
+    
+    private void gerencia(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    	
+    	List<Cliente> listaClientes = dao.getAll();
+        request.setAttribute("listaClientes", listaClientes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/gerenciamento.jsp");
+        dispatcher.forward(request, response);
     }
     
     private void login(HttpServletRequest request, HttpServletResponse response)
