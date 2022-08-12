@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.ufscar.dc.dsw.dao.ClienteDAO;
+
 import br.ufscar.dc.dsw.domain.Cliente;
 
 
@@ -17,12 +17,6 @@ import br.ufscar.dc.dsw.domain.Cliente;
 public class AdminController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    
-    private ClienteDAO dao;
-    
-    public void init() {
-        dao = new ClienteDAO();
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

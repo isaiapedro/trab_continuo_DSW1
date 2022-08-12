@@ -13,7 +13,7 @@
     	<header class="cabecalho">
             <h3 class="cabecalho__titulo">LifeCare</h3>
             <h4>Gerenciar Profissionais</h4>
-            <a class="cabecalho__link" href="${pageContext.request.contextPath}/prestador/cadastro">Adicionar novo</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/prestador/editar?id=0">Adicionar novo</a>
             <a class="cabecalho__link" href="${pageContext.request.contextPath}/admin/">Voltar</a>
         </header>
         <div class="corpo">

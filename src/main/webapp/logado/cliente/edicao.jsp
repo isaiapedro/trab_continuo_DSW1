@@ -1,23 +1,23 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
-<!DOCTYPE html>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page isELIgnored="false"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Cliente</title>
+        <title>Editar Cliente</title>
         <link href="../css/cliente.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     	<header class="cabecalho">
             <h3 class="cabecalho__titulo">LifeCare</h3>
-            <a class="cabecalho__link" href="${pageContext.request.contextPath}/">Voltar</a>
+            <a class="cabecalho__link" href="${pageContext.request.contextPath}/cliente/gerenciar">Voltar</a>
         </header>
         <div class="corpo">
-        	<section class="conteudo">
+        	<section class="conteudo_tabelas">
         		<c:choose>
 					<c:when test="${cliente != null}">
-						<form action="atualizacao" method="post">
-						
+						<form class="conteudo__form" action="atualizacao" method="post">
+							
 							<input type="hidden" name="id" value="${cliente.id}" />
 						
 							<label class="conteudo__form-label" for="email">E-mail:</label><br>
@@ -33,15 +33,15 @@
 		                    <input class="conteudo__form-input" type="text" name="CPF" value="${cliente.CPF}" required/><br/>
 		                    
 		                    <label class="conteudo__form-label" for="adm">ADM:</label><br>
-		                    <input type="number" name="adm" value="${cliente.adm}" required/>
+		                    <input class="conteudo__form-input" type="number" name="adm" value="${cliente.adm}" min="0" max="1" required/><br>
 		                    
 		                    <label class="conteudo__form-label" for="telefone">Telefone:</label><br>
 		                    <input class="conteudo__form-input" type="tel" name="telefone" value="${cliente.telefone}" required/><br/>
 		                    
 		                    <label class="conteudo__form-label" for="sexo">Sexo:</label><br>
-		                    <select class="conteudo__form-input" name="sexo" value="${cliente.sexo}" required>
-							    <option value="Masculino">Masculino</option>
-							    <option value="Feminino">Feminino</option>
+		                    <select class="conteudo__form-input" name="sexo" ${cliente.sexo} required>
+							    <option value="Masculino" ${cliente.sexo=="Masculino" ? 'selected' : '' }>Masculino</option>
+							    <option value="Feminino"${cliente.sexo=="Feminino" ? 'selected' : '' } >Feminino</option>
 		  					</select><br>
 		  					
 		  					<label class="conteudo__form-label" for="nascimento">Data de Nascimento:</label><br>
@@ -51,7 +51,7 @@
 						</form>
 					</c:when>
 					<c:otherwise>
-						<form action="insercao" method="post">
+						<form class="conteudo__form" action="insercaoadm" method="post">
 							<label class="conteudo__form-label" for="email">E-mail:</label><br>
 		                    <input class="conteudo__form-input" type="email" name="email" required/><br/>
 		                    

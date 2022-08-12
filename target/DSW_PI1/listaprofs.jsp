@@ -3,42 +3,59 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-        <title>Lista de Profissionais</title>
-        <link href="../css/prestador.css" rel="stylesheet" type="text/css"/>
+<title>Lista de Profissionais</title>
+<link href="../css/prestador.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	    <%
+	<%
 			String contextPath = request.getContextPath().replace("/", "");
 		%>
-    	<header class="cabecalho">
-            <h3 class="cabecalho__titulo">LifeCare</h3>
-            <h4>Nossos Profissionais</h4>
-            <a class="cabecalho__link" href="${pageContext.request.contextPath}/">Voltar</a>
-        </header>
-        <div class="corpo">
-        	<section class="conteudo_tabelas">
-				<table>
+	<header class="cabecalho">
+		<h3 class="cabecalho__titulo">LifeCare</h3>
+		<h4>Nossos Profissionais</h4>
+		<a class="cabecalho__link" href="${pageContext.request.contextPath}/">Voltar</a>
+	</header>
+	<div class="corpo">
+		<section class="conteudo">
+			<form class="conteudo__form" action="listagem" method="POST">
+				<label class="conteudo__form-label" for="filtroarea">Filtre por Area:</label> 
+					<select class="conteudo__form-filtro" name="filtroarea">
+						<option value="nenhum">Nenhuma</option>
+						<c:forEach items="${listaAreas}" var="area">
+							<option value="${area}">
+							${area}</option>
+						</c:forEach>
+					</select> 
+				<input class="botao-primario" type="submit" value="Filtrar" />
+			</form>
+		</section>
+	</div>
+	<div class="corpo">
+		<section class="conteudo_tabelas">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Nome</th>
+					<th>CPF</th>
+					<th>Area</th>
+					<th>Especialidade</th>
+				</tr>
+				<c:forEach var="prestador" items="${requestScope.listaPrestadores}">
 					<tr>
-						<th>ID</th>
-						<th>Email</th>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>Area</th>
-						<th>Especialidade</th>
+						<td>${prestador.id}</td>
+						<td>${prestador.email}</td>
+						<td>${prestador.nome}</td>
+						<td>${prestador.CPF}</td>
+						<td>${prestador.area}</td>
+						<td>${prestador.especialidade}</td>
+						<td><a class="botao-primario" href="#">Agendar</a>
 					</tr>
-					<c:forEach var="prestador" items="${requestScope.listaPrestadores}">
-						<tr>
-							<td>${prestador.id}</td>
-							<td>${prestador.email}</td>
-							<td>${prestador.nome}</td>
-							<td>${prestador.CPF}</td>
-							<td>${prestador.area}</td>
-							<td>${prestador.especialidade}</td>
-							<td><a class="botao-primario" href="#">Agendar</a>
-						</tr>
-					</c:forEach>
-				</table>
-			</section>
-		</div>
+
+				</c:forEach>
+			</table>
+		</section>
+	</div>
+
 </body>
 </html>
