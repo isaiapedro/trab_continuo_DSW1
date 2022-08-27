@@ -69,6 +69,72 @@ public class PrestadorDAO extends GenericDAO {
         return listaPrestador;
     }
 	
+	public List<Prestador> getPrestadorFiltro(String filtroarea, String filtroespec) {
+
+    	List<Prestador> listaPrestadoresArea = new ArrayList<>();
+    	
+    	if(filtroespec != null) {
+    		String sql = "SELECT * from Prestador WHERE area = ? AND especialidade = ?";
+    		try {
+                Connection conn = this.getConnection();
+                PreparedStatement statement = conn.prepareStatement(sql);
+
+                statement.setString(1, filtroarea);
+                statement.setString(2, filtroespec);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                	
+                	Long id = resultSet.getLong("id");
+                	String email = resultSet.getString("email");
+                    String senha = resultSet.getString("senha");
+                    String nome = resultSet.getString("nome");
+                    String CPF = resultSet.getString("CPF");
+                    String area = resultSet.getString("area");
+                    String especialidade = resultSet.getString("especialidade");
+
+                    Prestador prestador = new Prestador(id, email, senha, nome, CPF, area, especialidade);
+                    listaPrestadoresArea.add(prestador);
+                }
+
+                resultSet.close();
+                statement.close();
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+    	} else {
+    		String sql = "SELECT * from Prestador WHERE area = ?";
+    		try {
+                Connection conn = this.getConnection();
+                PreparedStatement statement = conn.prepareStatement(sql);
+
+                statement.setString(1, filtroarea);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                	
+                	Long id = resultSet.getLong("id");
+                	String email = resultSet.getString("email");
+                    String senha = resultSet.getString("senha");
+                    String nome = resultSet.getString("nome");
+                    String CPF = resultSet.getString("CPF");
+                    String area = resultSet.getString("area");
+                    String especialidade = resultSet.getString("especialidade");
+
+                    Prestador prestador = new Prestador(id, email, senha, nome, CPF, area, especialidade);
+                    listaPrestadoresArea.add(prestador);
+                }
+
+                resultSet.close();
+                statement.close();
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+    	}
+
+    	return listaPrestadoresArea;
+    }
+	
 	public void delete(Prestador prestador) {
         String sql = "DELETE FROM Prestador where id = ?";
 

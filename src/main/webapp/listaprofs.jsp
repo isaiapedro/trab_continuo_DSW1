@@ -20,12 +20,19 @@
 			<form class="conteudo__form" action="listagem" method="POST">
 				<label class="conteudo__form-label" for="filtroarea">Filtre por Area:</label> 
 					<select class="conteudo__form-filtro" name="filtroarea">
-						<option value="nenhum">Nenhuma</option>
-						<c:forEach items="${listaAreas}" var="area">
-							<option value="${area}">
-							${area}</option>
+						<option value="nenhuma">Nenhuma</option>
+						<c:forEach items="${listaArea}" var="area">
+							<option value="${area}" ${filtroarea==area ? 'selected' : '' }>${area}</option>
 						</c:forEach>
-					</select> 
+					</select><br>
+					
+					<label class="conteudo__form-label" for="filtroespec">Filtre por Especialidade:</label> 
+					<select class="conteudo__form-filtro" name="filtroespec">
+						<option value="nenhuma">Nenhuma</option>
+						<c:forEach items="${listaEspec}" var="espec">
+							<option value="${espec}" ${filtroespec==espec ? 'selected' : '' }>${espec}</option>
+						</c:forEach>
+					</select><br>
 				<input class="botao-primario" type="submit" value="Filtrar" />
 			</form>
 		</section>

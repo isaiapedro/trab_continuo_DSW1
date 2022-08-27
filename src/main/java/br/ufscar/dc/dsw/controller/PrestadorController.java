@@ -65,6 +65,9 @@ public class PrestadorController extends HttpServlet {
 			case "/listagem":
 				listaPrestadores(request, response);
 				break;
+			case "/filtragem":
+				//filtraPrestadores(request, response);
+				break;
 			default:
 				login(request, response);
 				break;
@@ -168,24 +171,52 @@ public class PrestadorController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String filtroarea = request.getParameter("filtroarea");
-
+		String filtroespec = request.getParameter("filtroespec");
+		
 		List<Prestador> listaPrestadores = dao.getAll();
 		Prestador prestador;
 
-		List<String> listaAreas = new ArrayList<>();
+		List<String> listaArea = new ArrayList<>();
 		String area;
+		
+		List<String> listaEspec = new ArrayList<>();
+		String espec;
 
+		//pega os valores de areas para seleção do filtro
 		for (int i = 0; i < listaPrestadores.size(); i++) {
 			prestador = listaPrestadores.get(i);
-			if (listaAreas.contains(prestador.getArea()) == false) {
+			if (listaArea.contains(prestador.getArea()) == false) {
 				area = prestador.getArea();
-				listaAreas.add(area);
+				listaArea.add(area);
 			}
+		}
+		
+		if(listaArea.contains(filtroarea)){
+			listaPrestadores = dao.getPrestadorFiltro(filtroarea, null);
+			
+			//pega os valores de especialidades para seleção do filtro
+			for (int i = 0; i < listaPrestadores.size(); i++) {
+				prestador = listaPrestadores.get(i);
+				if (listaEspec.contains(prestador.getEspecialidade()) == false) {
+					espec = prestador.getEspecialidade();
+					listaEspec.add(espec);
+				}
+			}
+			
+			if(listaEspec.contains(filtroespec)) {
+				listaPrestadores = dao.getPrestadorFiltro(filtroarea, filtroespec);
+			}
+			
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/listagem");
 		}
 
 		request.setAttribute("listaPrestadores", listaPrestadores);
-		request.setAttribute("listaAreas", listaAreas);
-
+		request.setAttribute("listaArea", listaArea);
+		request.setAttribute("listaEspec", listaEspec);
+		request.setAttribute("filtroarea", filtroarea);
+		request.setAttribute("filtroespec", filtroespec);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/listaprofs.jsp");
 		dispatcher.forward(request, response);
 
